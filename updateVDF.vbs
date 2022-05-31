@@ -1,3 +1,5 @@
+Const updateHour = 16
+Const updateMinute = 22
 Dim urlVersion, urlVDF
 Dim fileVersion, fileVDF
 
@@ -65,12 +67,17 @@ function runFile(fname)
 end function
 
 dim lastVersion, currVersion
-lastVersion = readFile(fileVersion)
-currVersion = curlString(urlVersion)
-if (currVersion > lastVersion) then
-	call curlFile(urlVersion, fileVersion)
-	call curlFile(urlVDF, fileVDF)
-	call runFile(fileVDF)
-else
-	MsgBox "Nothing to Update"
+
+if (Hour(Now())*60 + Minute(Now()) > updateHour*60 + updateMinute) then
+
+	lastVersion = readFile(fileVersion)
+	currVersion = curlString(urlVersion)
+	if (currVersion > lastVersion) then
+		call curlFile(urlVersion, fileVersion)
+		call curlFile(urlVDF, fileVDF)
+		call runFile(fileVDF)
+	else
+		MsgBox "Nothing to Update"
+	end if
+
 end if
