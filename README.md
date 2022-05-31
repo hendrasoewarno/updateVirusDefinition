@@ -1,3 +1,7 @@
+# Script Virus Definition Update
+
+Script ini berfungsi untuk memeriksa versi Virus Definition dan Mengupdate jika versi pada komputer < versi di server
+```
 Const updateHour = 16
 Const updateMinute = 22
 Dim urlVersion, urlVDF
@@ -81,3 +85,4 @@ if (Hour(Now())*60 + Minute(Now()) > updateHour*60 + updateMinute) then
 	end if
 
 end if
+```
